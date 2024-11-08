@@ -1,32 +1,64 @@
+// CustomButton.tsx
 import React from 'react';
-import { Text, StyleSheet, Pressable } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, useWindowDimensions, GestureResponderEvent, ViewStyle } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-export default function Button(props: any) {
-  const { onPress, title } = props;
-  return (
-    <Pressable style={styles.button} onPress={onPress}>
-      <Text style={styles.text}>{title}</Text>
-    </Pressable>
-  );
+interface CustomButtonProps {
+  title: string;
+  onPress?: (event: GestureResponderEvent) => void;
+  navigateTo?: string; 
+  color?: string;
+  backgroundColor?: string;
+  style?: ViewStyle;
 }
+
+const CustomButton: React.FC<CustomButtonProps> = ({
+  title,
+  onPress,
+  navigateTo,
+  color = '#FFFFFF',
+  backgroundColor = '#48b2ff',
+  style,
+}) => {
+  const { width } = useWindowDimensions();
+  const navigation = useNavigation();
+
+  // Maneja el evento de clic
+  const handlePress = (event: GestureResponderEvent) => {
+    if (navigateTo) {
+      navigation.navigate(navigateTo); 
+    } else if (onPress) {
+      onPress(event);
+    }
+  };
+
+  return (
+    <TouchableOpacity
+      onPress={handlePress}
+      style={[
+        styles.button,
+        { backgroundColor, width: width * 0.8 },
+        style,
+      ]}
+      activeOpacity={0.8}
+    >
+      <Text style={[styles.buttonText, { color }]}>{title}</Text>
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
   button: {
+    paddingVertical: 12,
+    borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: '#63e2ef',
-    width: 300,
-    margin: 5,
+    marginVertical: 10,
   },
-  text: {
+  buttonText: {
     fontSize: 16,
-    lineHeight: 21,
     fontWeight: 'bold',
-    letterSpacing: 0.25,
-    color: 'black',
   },
 });
+
+export default CustomButton;

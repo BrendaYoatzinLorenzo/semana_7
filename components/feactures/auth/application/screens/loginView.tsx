@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import {  Button, StyleSheet, Text, TextInput, View } from 'react-native';
-import { useSessionState } from '../../provider';
-
-// Inicializa Firebase App
+import { useSessionState } from "../provider"; 
 
 export default function LoginView() {
   const [email, setEmail] = useState('');
@@ -66,7 +64,6 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingLeft: 15,
         paddingRight: 15,
-        paddingTop: '50%',
         borderRadius: 5
       },
     });

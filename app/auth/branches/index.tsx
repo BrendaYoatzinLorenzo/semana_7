@@ -1,4 +1,4 @@
-import { BranchesView } from "@/components/features/branches/branchesView";
+import { BranchesView } from "@/components/feactures/branches/branchesView";
 
 
 export default function BranchesScreen(){

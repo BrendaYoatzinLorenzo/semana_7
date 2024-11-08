@@ -1,4 +1,4 @@
-import { EntryView } from "@/components/features/entry/application/screens/entryView";
+import { EntryView } from "@/components/feactures/entry/application/screens/entryView";
 
 export default function EntryScreen(){
 	return <EntryView/>

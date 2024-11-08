@@ -1,4 +1,4 @@
-import { UpdateExitView } from "@/components/features/exits/application/screens/updateExit";
+import { UpdateExitView } from "@/components/feactures/exits/application/screens/updateExit";
 export default function UpdateExitScreen(){
 	return <UpdateExitView/>
 }

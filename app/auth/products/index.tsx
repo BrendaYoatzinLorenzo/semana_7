@@ -1,6 +1,6 @@
-
-import { ProductsView } from "@/components/features/products/application/screens/productsView";
+import { ProductsView } from "@/components/feactures/products/interfaces/screens/productsView";
 
 export default function ProductScreen(){
-    return <ProductsView/>;
+    return <ProductsView/> ;
+
 }

@@ -1,7 +1,8 @@
-import Button from "@/components/Button";
+
 import { Link } from "expo-router";
 import { View, Text, StyleSheet } from "react-native";
-import { useSessionState } from "../../provider";
+import { useSessionState } from "../provider"; 
+import CustomButton from "@/components/Button";
 
 export function HomeView() {
 	const {
@@ -12,30 +13,30 @@ export function HomeView() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Vista cuando hay un Login Activo</Text>
             <View style={styles.buttonContainer}>
                 <Link href={"/auth/products"}>
-                    <Button title="Enviar a Productos" style={styles.button} />
+                    <CustomButton title="Enviar a Productos" />
                 </Link>
                 <Link href={"/auth/branches"}>
-                    <Button title="Enviar a Sucursales" style={styles.button} />
+                    <CustomButton title="Enviar a Sucursales" />
                 </Link>
                 <Link href={"/auth/entry"}>
-                    <Button title="Enviar a Entradas de Producto" style={styles.button} />
+                    <CustomButton title="Enviar a Entradas de Producto" />
                 </Link>
                 <Link href={"/auth/exits"}>
-                    <Button title="Enviar a Salidas de Producto" style={styles.button} />
+                    <CustomButton title="Enviar a Salidas de Producto" />
                 </Link>
                 <Link href={"/auth/transfer"}>
-                    <Button title="Enviar a Transferencias" style={styles.button} />
+                    <CustomButton title="Enviar a Transferencias" />
                 </Link>
                 <Link href={"/auth/freight"}>
-                    <Button title="Enviar a Fletes" style={styles.button} />
+                    <CustomButton title="Enviar a Fletes" />
                 </Link>
             </View>
 
-						<Button 
+				<CustomButton 
 				title='Cerrar Serion'
+                backgroundColor="#fc2626"
 				onPress={logout}
 				/>
 				
@@ -49,20 +50,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 20,
+        width: '100%',
     },
     title: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#333',
         marginBottom: 20,
         textAlign: 'center',
     },
     buttonContainer: {
-        width: '100%',
+        flex: 1,
+        justifyContent: 'center',
         alignItems: 'center',
-    },
-    button: {
-        width: '80%',
-        marginVertical: 10,
     },
 });

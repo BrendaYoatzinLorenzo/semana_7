@@ -45,3 +45,14 @@ export const readObject = async (key: string) => {
   }
 };
 
+export const testStorage = async () => {
+  
+  try {
+    await storeData('testKey', 'testValue');
+    const value = await readData('testKey');
+    console.log("Valor leído:", value); 
+  } catch (e) {
+    // error reading value
+    throw new Error("Error al leer el storage");
+  }
+};

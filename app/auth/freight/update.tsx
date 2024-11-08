@@ -1,4 +1,4 @@
-import { UpdateFreightView } from "@/components/features/freight/application/screens/updateFreightView";
+import { UpdateFreightView } from "@/components/feactures/freight/application/screens/updateFreightView";
 
 
 export default function UpdateScreen(){

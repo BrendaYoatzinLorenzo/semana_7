@@ -3,8 +3,9 @@ import axios from "axios";
 import { readData, storeData } from "./localStorage";
 
 
+
 export const apiClient = axios.create({
-  baseURL: 'http://localhost:3005/',
+  baseURL: 'http://localhost:3000/',
   headers: {
     'Content-Type': 'application/json',
   },

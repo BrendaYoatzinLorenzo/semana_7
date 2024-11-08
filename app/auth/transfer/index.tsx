@@ -1,4 +1,4 @@
-import { TransferView } from "@/components/features/transfer/application/screens/transferView";
+import { TransferView } from "@/components/feactures/transfer/application/screens/transferView";
 
 export default function TransferScreen(){
 	return <TransferView/>
