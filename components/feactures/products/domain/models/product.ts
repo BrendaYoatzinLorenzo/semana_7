@@ -1,23 +1,27 @@
 
 
 export interface Product {
+  id: number;
   name: string;
   brand: string;
   model: string;
-  description: string;
+  description?: string;
   category: string;
   stock: number;
   productCode: number;
-  status:  'ENTREGADO' | 'ENTREGADO_MANANA' | 'PENDIENTE' | 'ENTREGAR_DIA' | 'NO_ENTREGADO';
+  status:  string;
   isActive?: boolean;
-  branchId: number;
+  branchId?: number;
 }
 
 export interface ProductForm {
   name: string;
   brand: string;
   model: string;
-  description: string;
+  description?: string;
+  category: string;
   stock: number;
-  status:  'ENTREGADO' | 'ENTREGADO_MANANA' | 'PENDIENTE' | 'ENTREGAR_DIA' | 'NO_ENTREGADO';
+  productCode: number;
+  status:  string;
+  branchId?: number;
 }

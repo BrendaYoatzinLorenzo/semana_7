@@ -1,7 +1,6 @@
 import { Product } from "../../domain/models/product";
 import { ProductRepository } from "../../domain/repositories/ProductRepository";
 
-
 export class ProductApi implements ProductRepository {
   async fetchAll(): Promise<Product[]> {
     const response = await fetch('http://localhost:3000/api/products');
@@ -17,12 +16,18 @@ export class ProductApi implements ProductRepository {
     return response.json();
   }
 
-  async update(productId: number, product: Partial<Product>): Promise<Product> {
-    const response = await fetch(`http://localhost:3000/api/products/${productId}`, {
-      method: 'PATCH',
+  async update(id: number, product: Partial<Product>): Promise<Product> {
+    const response = await fetch(`http://localhost:3000/api/products/${id}`, {
+
+      method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(product),
     });
+    return response.json();
+  }
+
+  async findById(id: number): Promise<Product> {
+    const response = await fetch(`http://localhost:3000/api/products/${id}`);
     return response.json();
   }
 }
