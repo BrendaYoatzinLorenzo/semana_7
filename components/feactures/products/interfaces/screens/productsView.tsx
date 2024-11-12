@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { View, Button, FlatList, StyleSheet, Dimensions } from 'react-native';
 import { ProductViewModel } from '../viewModels/ProductViewModel';
 import { Product } from '../../domain/models/product';
-import {ProductCard} from '@/components/ProductCard';
-import ProductModal from '@/components/ProductModal';
+import { ProductCard } from './ProductCard';
+import ProductModal from './ProductModal';
+
 
 export function ProductsView() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -56,7 +57,7 @@ export function ProductsView() {
             onEdit={() => handleEditProduct(item)}
           />
         )}
-        keyExtractor={(item) => item.productCode.toString()}
+        keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.listContent}
       />
 

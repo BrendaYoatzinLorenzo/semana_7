@@ -16,7 +16,7 @@ export class ProductApi implements ProductRepository {
     return response.json();
   }
 
-  async update(id: number, product: Partial<Product>): Promise<Product> {
+  async update(id: number, product: Product): Promise<Product> {
     const response = await fetch(`http://localhost:3000/api/products/${id}`, {
 
       method: 'PUT',

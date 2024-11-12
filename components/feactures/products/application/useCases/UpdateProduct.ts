@@ -6,7 +6,7 @@ import { Product } from '../../domain/models/product';
 export class UpdateProduct {
   constructor(private productRepository: ProductRepository) {}
 
-  async execute(updatedData: Product): Promise<Product> {
+  async execute(updatedData: any): Promise<Product> {
     const { id, ...updateFields } = updatedData;
     return this.productRepository.update(id, updateFields);
   }
