@@ -6,7 +6,7 @@ import { Stack, Tabs } from "expo-router";
         <Tabs.Screen
             name ="Login"
             options={{
-                title:"Login",
+                title:"",
                 headerShown: false 
             }}
           />
@@ -14,7 +14,7 @@ import { Stack, Tabs } from "expo-router";
         <Tabs.Screen
             name ="Home"
             options={{
-                title:"Home",
+                title:"",
                 headerShown: false
             }}
           

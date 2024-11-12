@@ -24,7 +24,35 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "manifest": {   "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png",
+      "manifest": {
+        "short_name": "S.I.M.",
+        "name": "Sistema de Inventario para Mueblería",
+        "icons": [
+          {
+            "src": "./assets/images/favicon.png",
+            "sizes": "64x64 32x32 24x24 16x16",
+            "type": "image/png"
+          },
+          {
+            "src": "./assets/images/favicon.png",
+            "type": "image/png",
+            "sizes": "192x192"
+          },
+          {
+            "src": "./assets/images/favicon.png",
+            "type": "image/png",
+            "sizes": "512x512"
+          }
+        ],
+        "start_url": ".",
+        "display": "standalone",
+        "theme_color": "#000000",
+        "background_color": "#ffffff"
+      } }
     },
     "plugins": [
       "expo-router"

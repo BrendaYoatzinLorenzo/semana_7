@@ -23,7 +23,6 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   const { width } = useWindowDimensions();
   const navigation = useNavigation();
 
-  // Maneja el evento de clic
   const handlePress = (event: GestureResponderEvent) => {
     if (navigateTo) {
       navigation.navigate(navigateTo); 
@@ -51,6 +50,7 @@ const styles = StyleSheet.create({
   button: {
     paddingVertical: 12,
     borderRadius: 8,
+    margin: 'auto',
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 10,

@@ -1,9 +1,24 @@
-import { Text, View } from "react-native";
 
-export default function HomeScreen(){
-	return (
-		<View>
-            <Text>Home Screen</Text>
-        </View>
-	)
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { SessionProvider } from '@/components/feactures/auth/application/provider';
+import LoginScreen from '@/components/feactures/auth/application/screens/loginView';
+import { HomeView } from '@/components/feactures/auth/application/screens/homeView';
+
+
+const Stack = createStackNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer independent={true}>
+       <SessionProvider >
+         {/* Aca va el componente que provee la sesion */}
+      <Stack.Navigator  screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Home" component={HomeView}  />
+      </Stack.Navigator>
+         {/*... */}
+       </SessionProvider>
+    </NavigationContainer>
+  );
 }

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Button, FlatList, StyleSheet } from 'react-native';
+import { View, Button, FlatList, StyleSheet, Dimensions } from 'react-native';
 import { ProductViewModel } from '../viewModels/ProductViewModel';
 import { Product } from '../../domain/models/product';
-import ProductCard from '@/components/ProductCard';
+import {ProductCard} from '@/components/ProductCard';
 import ProductModal from '@/components/ProductModal';
 
 export function ProductsView() {
@@ -11,17 +11,15 @@ export function ProductsView() {
   const [productToEdit, setProductToEdit] = useState<Product | undefined>(undefined);
   const productViewModel = new ProductViewModel();
 
+
   const handleSaveProduct = async (product: Product) => {
     if (productToEdit) {
-      // Si se está editando, llama a la función de actualización
       await productViewModel.updateNewProduct(product);
     } else {
-      // Si es un producto nuevo, llama a la función de creación
       await productViewModel.createNewProduct(product);
     }
     setModalVisible(false);
-    setProductToEdit(undefined);  
-    // Recarga los productos para reflejar los cambios
+    setProductToEdit(undefined);
     const fetchedProducts = await productViewModel.fetchAllProducts();
     setProducts(fetchedProducts);
   };
@@ -46,7 +44,9 @@ export function ProductsView() {
 
   return (
     <View style={styles.container}>
-      <Button title="Agregar Producto" onPress={() => setModalVisible(true)} />
+      <View style={styles.buttonContainer}>
+        <Button title="Agregar Producto" onPress={() => setModalVisible(true)} />
+      </View>
 
       <FlatList
         data={products}
@@ -57,9 +57,9 @@ export function ProductsView() {
           />
         )}
         keyExtractor={(item) => item.productCode.toString()}
-        style={styles.list} // Asigna estilo para ocupar espacio restante y permitir desplazamiento
+        contentContainerStyle={styles.listContent}
       />
-      
+
       <ProductModal
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
@@ -70,12 +70,26 @@ export function ProductsView() {
   );
 };
 
+const { width } = Dimensions.get('window');
+const isLargeScreen = width > 768;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: isLargeScreen ? 20 : 10,
+    alignItems: 'center',
+  },
+  buttonContainer: {
+    width: isLargeScreen ? '30%' : '100%',
+    alignSelf: 'center',
+    marginVertical: 10,
   },
   list: {
-    flex: 1, // Ocupa el espacio restante en el contenedor
+    flex: 1,
+    width: '100%',
+  },
+  listContent: {
+    paddingHorizontal: isLargeScreen ? 20 : 10,
   },
 });
 

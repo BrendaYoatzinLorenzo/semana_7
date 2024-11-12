@@ -12,7 +12,6 @@ interface ProductModalProps {
 
 const ProductModal: React.FC<ProductModalProps> = ({ visible, onClose, onSave, productToEdit }) => {
   const [productData, setProductData] = useState<Product>({
-    id: 0,
     name: '',
     brand: '',
     model: '',
@@ -82,7 +81,6 @@ const ProductModal: React.FC<ProductModalProps> = ({ visible, onClose, onSave, p
 
   const resetForm = () => {
     setProductData({
-      id: 0,
       name: '',
       brand: '',
       model: '',
@@ -158,8 +156,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ visible, onClose, onSave, p
               style={styles.input}
               placeholder="Stock"
               value={String(productData.stock)}
-              onChangeText={(text) => handleChange('stock', parseInt(text, 10))}
-              keyboardType="numeric"
+              onChangeText={(text) => handleChange('stock', text)}
             />
             {errors.stock && <Text style={styles.errorText}>{errors.stock}</Text>}
             
@@ -168,7 +165,6 @@ const ProductModal: React.FC<ProductModalProps> = ({ visible, onClose, onSave, p
               placeholder="Código de Producto"
               value={String(productData.productCode)}
               onChangeText={(text) => handleChange('productCode', parseInt(text, 10))}
-              keyboardType="numeric"
             />
             {errors.productCode && <Text style={styles.errorText}>{errors.productCode}</Text>}
             
@@ -190,10 +186,9 @@ const ProductModal: React.FC<ProductModalProps> = ({ visible, onClose, onSave, p
 
             <TextInput
               style={styles.input}
-              placeholder="Branch ID"
+              placeholder="Id de Sucursal"
               value={String(productData.branchId)}
-              onChangeText={(text) => handleChange('branchId', parseInt(text, 10))}
-              keyboardType="numeric"
+              onChangeText={(text) => handleChange('branchId', text)}
             />
             {errors.branchId && <Text style={styles.errorText}>{errors.branchId}</Text>}
           </ScrollView>
@@ -211,7 +206,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ visible, onClose, onSave, p
 const styles = StyleSheet.create({
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -222,10 +217,16 @@ const styles = StyleSheet.create({
     padding: 20,
     alignItems: 'center',
     maxHeight: '80%',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
   modalTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 22,
+    fontWeight: '600',
+    color: '#333',
     marginBottom: 20,
     textAlign: 'center',
   },
@@ -237,26 +238,30 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '100%',
-    height: 40,
-    borderColor: '#ccc',
+    height: 45,
+    borderColor: '#ddd',
     borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginBottom: 5,
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    marginBottom: 12,
+    fontSize: 16,
   },
   label: {
     alignSelf: 'flex-start',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '500',
+    color: '#555',
+    marginBottom: 5,
     marginTop: 10,
   },
   picker: {
     width: '100%',
-    height: 40,
+    height: 45,
     marginBottom: 10,
+    color: '#555',
   },
   errorText: {
-    color: 'red',
+    color: '#d32f2f',
     fontSize: 12,
     alignSelf: 'flex-start',
     marginBottom: 10,
@@ -269,9 +274,10 @@ const styles = StyleSheet.create({
   },
   pickerContainer: {
     width: '100%',
-    borderColor: '#ccc',
+    borderColor: '#ddd',
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: 8,
+    paddingHorizontal: 5,
     marginBottom: 10,
   },
 });

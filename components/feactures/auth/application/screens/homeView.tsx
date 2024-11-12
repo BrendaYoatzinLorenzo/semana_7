@@ -1,18 +1,15 @@
-
+import React from "react";
 import { Link } from "expo-router";
-import { View, Text, StyleSheet } from "react-native";
-import { useSessionState } from "../provider"; 
+import { View, StyleSheet } from "react-native"; 
 import CustomButton from "@/components/Button";
+import { Navbar } from "@/components/Navbar";
 
 export function HomeView() {
-	const {
-		user,
-		logout,
-		message,
-	  } = useSessionState()
+
 
     return (
         <View style={styles.container}>
+            <Navbar />
             <View style={styles.buttonContainer}>
                 <Link href={"/auth/products"}>
                     <CustomButton title="Enviar a Productos" />
@@ -33,13 +30,6 @@ export function HomeView() {
                     <CustomButton title="Enviar a Fletes" />
                 </Link>
             </View>
-
-				<CustomButton 
-				title='Cerrar Serion'
-                backgroundColor="#fc2626"
-				onPress={logout}
-				/>
-				
         </View>
     );
 }
@@ -51,12 +41,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 20,
         width: '100%',
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 20,
-        textAlign: 'center',
     },
     buttonContainer: {
         flex: 1,
