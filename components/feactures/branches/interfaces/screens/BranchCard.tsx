@@ -1,18 +1,18 @@
 import React from 'react';
 import { View, Button, StyleSheet, Text } from 'react-native';
-import { Freight } from '../../domain/models/freight';
+import { Branch } from '../../domain/models/branch';
 
-
-export interface FreightCardProps {
-  freight: Freight;
+// Propiedades del componente BranchCard (SucursalCard)
+export interface BranchCardProps {
+  branch: Branch;
   onEdit: () => void; 
 }
 
-export const FreightCard: React.FC<FreightCardProps> = ({ freight, onEdit }) => (
+export const BranchCard: React.FC<BranchCardProps> = ({ branch, onEdit }) => (
   <View style={styles.card}>
-    <Text style={styles.title}>{freight.city}</Text>
-    <Text style={styles.text}>Price: {freight.price}</Text>
-    <Button title="Editar" onPress={onEdit} />
+    <Text style={styles.title}>{branch.name}</Text>  
+    <Text style={styles.text}>{branch.adress}</Text> 
+    <Button title="Edit" onPress={onEdit} />  
   </View>
 );
 
@@ -21,12 +21,12 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 20,
     padding: 16,
-    height: 200,
+    height: 150,
     width: 200,
-    backgroundColor: '#E0F7FA', 
-    borderRadius: 8,
+    backgroundColor: '#E0F7FA',  
+    borderRadius: 8,            
     justifyContent: 'space-between',
-    shadowRadius:2
+    shadowRadius: 2,            
   },
   title: {
     fontSize: 18,
@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    
   },
   text: {
     fontSize: 16,
@@ -45,4 +44,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FreightCard;
+export default BranchCard;

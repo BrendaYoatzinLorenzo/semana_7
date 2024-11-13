@@ -1,5 +1,3 @@
-// application/useCases/FetchProducts.ts
-
 import { Freight } from "../../domain/models/freight";
 import { FreightRepository } from "../../domain/repositories/FreightRepository";
 

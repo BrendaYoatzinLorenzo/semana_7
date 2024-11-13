@@ -267,7 +267,10 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     width: '100%',
-    marginTop: 15,
+    margin: 10,
+    flexDirection: 'row',
+    justifyContent:'space-between',
+    
   },
   errorText: {
     color: 'red',

@@ -71,17 +71,15 @@ export function ProductsView() {
   );
 };
 
-const { width } = Dimensions.get('window');
-const isLargeScreen = width > 768;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: isLargeScreen ? 20 : 10,
+    padding: 20,
     alignItems: 'center',
   },
   buttonContainer: {
-    width: isLargeScreen ? '30%' : '100%',
+    width: 'auto',
     alignSelf: 'center',
     marginVertical: 10,
   },
@@ -90,7 +88,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   listContent: {
-    paddingHorizontal: isLargeScreen ? 20 : 10,
+    paddingHorizontal: 10,
+    marginBottom: 20,
   },
 });
 

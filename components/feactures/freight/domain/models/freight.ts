@@ -1,5 +1,5 @@
 export interface Freight{
 	id: number;
-	name: string;
+	city: string;
 	price: number;
 } 

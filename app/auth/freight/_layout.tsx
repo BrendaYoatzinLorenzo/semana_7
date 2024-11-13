@@ -2,9 +2,9 @@ import { Stack } from "expo-router";
 
 export default function _layout(){
 	return(
-		<Stack>
+		<Stack screenOptions={{ headerShown:false }}>
 			<Stack.Screen name="freight" options={{
-				title: "Inicio"
+				title: "",
 			}}/>
 		</Stack>
 	)

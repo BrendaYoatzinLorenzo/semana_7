@@ -1,35 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import { Modal, View, Text, TextInput, Button, StyleSheet, ScrollView, Alert, TouchableOpacity } from 'react-native';
-import { Freight } from '../../domain/models/freight';
-import { freightSchema } from '../../domain/validation/FreightSchema';
-interface FreightModalProps {
+import { Modal, View, Text, TextInput, Button, StyleSheet, ScrollView, Alert } from 'react-native';
+import { Branch } from '../../domain/models/branch'; 
+import { branchtSchema } from '../../domain/validation/BranchSchema';
+
+interface BranchModalProps {
   visible: boolean;
   onClose: () => void;
-  onSave: (freight: Freight) => void;
-  freightToEdit?: Freight | null;
+  onSave: (branch: Branch) => void;
+  branchToEdit?: Branch | null;  
 }
 
-const FreightModal: React.FC<FreightModalProps> = ({ visible, onClose, onSave, freightToEdit }) => {
-  const [freightData, setFreightData] = useState<Freight>({
+const BranchModal: React.FC<BranchModalProps> = ({ visible, onClose, onSave, branchToEdit }) => {
+  const [branchData, setBranchData] = useState<Branch>({
     id: 0,
-    city: '',
-    price: 0,
+    name: '',
+    address: '',
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
     if (visible) {
-      if (freightToEdit) {
-        setFreightData(freightToEdit);
+      if (branchToEdit) {
+        setBranchData(branchToEdit);
       } else {
         resetForm();
       }
     }
-  }, [visible, freightToEdit]);
+  }, [visible, branchToEdit]);
 
-  const handleChange = (field: keyof Freight, value: any) => {
-    setFreightData((prevData) => ({
+  const handleChange = (field: keyof Branch, value: any) => {
+    setBranchData((prevData) => ({
       ...prevData,
       [field]: value,
     }));
@@ -40,7 +41,7 @@ const FreightModal: React.FC<FreightModalProps> = ({ visible, onClose, onSave, f
   };
 
   const handleValidation = () => {
-    const validationResult = freightSchema.safeParse(freightData);
+    const validationResult = branchtSchema.safeParse(branchData); 
     if (!validationResult.success) {
       const fieldErrors: { [key: string]: string } = {};
       validationResult.error.errors.forEach((err) => {
@@ -56,10 +57,10 @@ const FreightModal: React.FC<FreightModalProps> = ({ visible, onClose, onSave, f
   const handleSave = () => {
     if (handleValidation()) {
       try {
-        onSave(freightData);
+        onSave(branchData);
         resetForm();
       } catch (error) {
-        Alert.alert('Error', 'Hubo un problema al guardar el flete.');
+        Alert.alert('Error', 'Hubo un problema al guardar la sucursal.');
       }
     } else {
       Alert.alert('Error de validación', 'Por favor corrige los errores en el formulario.');
@@ -67,11 +68,10 @@ const FreightModal: React.FC<FreightModalProps> = ({ visible, onClose, onSave, f
   };
 
   const resetForm = () => {
-    setFreightData({
+    setBranchData({
       id: 0,
-      city: '',
-      price: 0,
-      // Resetea otros campos específicos de Freight aquí
+      name: '',
+      address: '',
     });
     setErrors({});
   };
@@ -89,26 +89,25 @@ const FreightModal: React.FC<FreightModalProps> = ({ visible, onClose, onSave, f
       <View style={styles.modalOverlay}>
         <View style={styles.modalContainer}>
           <Text style={styles.modalTitle}>
-            {freightToEdit ? 'Editar Flete' : 'Agregar Flete'}
+            {branchToEdit ? 'Editar Sucursal' : 'Agregar Sucursal'}
           </Text>
 
           <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollViewContent}>
             <TextInput
               style={styles.input}
               placeholder="Nombre"
-              value={freightData.city}
-              onChangeText={(text) => handleChange('city', text)}
+              value={branchData.name}
+              onChangeText={(text) => handleChange('name', text)}
             />
-            {errors.city && <Text style={styles.errorText}>{errors.city}</Text>}
+            {errors.name && <Text style={styles.errorText}>{errors.name}</Text>}
 
             <TextInput
               style={styles.input}
-              placeholder="Precio"
-              value={freightData.price.toString()}
-              onChangeText={(text) => handleChange('price', parseFloat(text) || 0)}
-              keyboardType="numeric"
+              placeholder="Dirección"
+              value={branchData.address}
+              onChangeText={(text) => handleChange('address', text)}
             />
-            {errors.price && <Text style={styles.errorText}>{errors.price}</Text>}
+            {errors.address && <Text style={styles.errorText}>{errors.address}</Text>}
           </ScrollView>
 
           <View style={styles.buttonContainer}>
@@ -176,4 +175,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FreightModal;
+export default BranchModal;

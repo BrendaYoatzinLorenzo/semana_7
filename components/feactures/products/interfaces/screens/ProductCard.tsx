@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     elevation: 2,
     justifyContent: 'space-between',
+    shadowRadius: 2,
   },
   title: {
     fontSize: 18,

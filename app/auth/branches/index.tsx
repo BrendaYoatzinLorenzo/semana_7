@@ -1,6 +1,6 @@
-import { BranchesView } from "@/components/feactures/branches/branchesView";
+import { BranchView } from "@/components/feactures/branches/interfaces/screens/branchesView";
 
 
 export default function BranchesScreen(){
-	return <BranchesView/>
+	return <BranchView/>
 }

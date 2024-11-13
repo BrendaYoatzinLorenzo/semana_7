@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: isLargeScreen ? 20 : 10,
     alignItems: 'center',
+    shadowRadius:2
   },
   buttonContainer: {
     width: isLargeScreen ? '30%' : '100%',
